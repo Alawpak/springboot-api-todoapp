@@ -21,6 +21,6 @@ public class TaskService {
 
     public Task createTask(TaskInDTO taskInDTO){
         Task task = mapper.map(taskInDTO);
-        return this.repository.save(task); //devuelve la ent que se creo
+        return this.repository.save(task); //devuelve la entidad que se creo
     }
 }
