@@ -1,5 +1,6 @@
 package com.springboot.api.todoapp.service;
 
+import com.springboot.api.todoapp.commons.constants.ErrorMessages;
 import com.springboot.api.todoapp.exceptions.ToDoExceptions;
 import com.springboot.api.todoapp.mapper.TaskInDTOToTask;
 import com.springboot.api.todoapp.persistence.entity.Task;
@@ -16,14 +17,18 @@ import java.util.Optional;
 //servicio se conecta a repositorio y repositorio a al bd
 @Service
 public class TaskService {
+    
+    private final ErrorMessages errorMessages;
 
     private final TaskRepository repository;
 
     private final TaskInDTOToTask mapper;
 
+    
     public TaskService(TaskRepository repository, TaskInDTOToTask mapper){
         this.repository = repository;
         this.mapper = mapper;
+        errorMessages = null;
     }
 
     public Task createTask(TaskInDTO taskInDTO){
@@ -46,9 +51,21 @@ public class TaskService {
         Optional<Task> optionalTask = this.repository.findById(id);
 
         if(optionalTask.isEmpty()){
-            throw new ToDoExceptions("Task not found", HttpStatus.NOT_FOUND);
+            throw new ToDoExceptions(errorMessages.TASK_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
 
         this.repository.markTaskAsFinished(id);
+    }
+
+
+    public void deleteById(Long id){
+
+        Optional<Task> optionalTask = this.repository.findById(id);
+
+        if(optionalTask.isEmpty()){
+            throw new ToDoExceptions(errorMessages.TASK_NOT_FOUND, HttpStatus.NOT_FOUND);
+        }
+
+        this.repository.deleteById(id);
     }
 }
