@@ -7,6 +7,7 @@ import com.springboot.api.todoapp.persistence.repository.TaskRepository;
 import com.springboot.api.todoapp.service.dto.TaskInDTO;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 //servicio se conecta a repositorio y repositorio a al bd
@@ -33,5 +34,11 @@ public class TaskService {
 
     public List<Task> findAllByTaskStatus(TaskStatus taskStatus){
         return this.repository.findAllByTaskStatus(taskStatus);
+    }
+
+    //cuando hace un cambio de datos se tiene que marcar como transactional
+    @Transactional
+    public void markTaskAsFinished(Long id){
+        this.repository.markTaskAsFinished(id);
     }
 }

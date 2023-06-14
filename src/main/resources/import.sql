@@ -1,0 +1,5 @@
+INSERT INTO task (id, title, description, create_date, eta, finished, task_status) VALUES(null, 'Comprar webos', 'Ir al mall a comprar webox', NOW(), NOW(), false, 1);
+INSERT INTO task (id, title, description, create_date, eta, finished, task_status) VALUES(null, 'Comprar pollo', 'Ir al mall a comprar pollo', NOW(), NOW(), true, 0);
+INSERT INTO task (id, title, description, create_date, eta, finished, task_status) VALUES(null, 'Comprar queso', 'Ir al mall a comprar queso', NOW(), NOW(), false, 0);
+INSERT INTO task (id, title, description, create_date, eta, finished, task_status) VALUES(null, 'Comprar salsa', 'Ir al mall a comprar salsa', NOW(), NOW(), false, 1);
+INSERT INTO task (id, title, description, create_date, eta, finished, task_status) VALUES(null, 'Comprar frijol', 'Ir al mall a comprar frijol', NOW(), NOW(), true, 0);

@@ -4,6 +4,8 @@ import com.springboot.api.todoapp.persistence.entity.Task;
 import com.springboot.api.todoapp.persistence.entity.TaskStatus;
 import com.springboot.api.todoapp.service.TaskService;
 import com.springboot.api.todoapp.service.dto.TaskInDTO;
+import io.swagger.models.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +35,12 @@ public class TaskController {
     public List<Task> findAllByTaksStatus(@PathVariable("status") TaskStatus taskStatus){
 
         return this.taskService.findAllByTaskStatus(taskStatus);
+    }
+
+    //al hacer update o delete es bueno devolver algo con el status 204
+    @PatchMapping("/mark_as_finished/{id}")
+    public ResponseEntity<Void> markAsFinished(@PathVariable("id") Long id){
+        this.taskService.markTaskAsFinished(id);
+        return ResponseEntity.noContent().build();
     }
 }
